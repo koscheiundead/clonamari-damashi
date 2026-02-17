@@ -1,5 +1,6 @@
 // --- 3d rendering ---
-import { ref, onBeforeUnmount, Ref } from 'vue';
+import { ref, onBeforeUnmount } from 'vue';
+import type { Ref } from 'vue';
 import * as THREE from 'three';
 
 /**

@@ -1,5 +1,6 @@
 // --- main game loop ---
-import { ref, onBeforeUnmount, Ref } from 'vue';
+import { ref, onBeforeUnmount } from 'vue';
+import type { Ref } from 'vue';
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import {
@@ -9,9 +10,8 @@ import {
   findCollidingCollectibles,
   stickItem,
   growKatamari,
-  KeyState,
-  Collectible
 } from '../gameLogic';
+import type { KeyState, Collectible } from '../gameLogic';
 
 /**
  * Composable for managing the game loop (the heart of the game)

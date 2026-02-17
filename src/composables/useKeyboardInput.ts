@@ -1,6 +1,6 @@
 // --- player controls
 import { ref, onBeforeUnmount } from 'vue';
-import { KeyState } from '../gameLogic';
+import type { KeyState } from '../gameLogic';
 
 /**
  * Composable for managing keyboard input state

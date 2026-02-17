@@ -1,8 +1,9 @@
 // --- item management ---
-import { ref, Ref } from 'vue';
+import { ref } from 'vue';
+import type { Ref } from 'vue';
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
-import { Collectible } from '../gameLogic';
+import type { Collectible } from '../gameLogic';
 
 /**
  * Composable for managing collectible items (spawning, tracking)

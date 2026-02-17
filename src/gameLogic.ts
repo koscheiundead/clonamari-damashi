@@ -140,7 +140,7 @@ export function stickItem(
  * - Visual scale of the katamari mesh
  * - Counter-scales all collected items so they stay the same visual size
  * - Updates the physics shape radius
- * 
+ *
  * Returns the new size.
  */
 export function growKatamari(
