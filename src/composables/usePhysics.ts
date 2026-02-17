@@ -1,5 +1,5 @@
 // --- physics world management ---
-import { ref, onBeforeUnmount } from 'vue';
+import { shallowRef, onBeforeUnmount } from 'vue';
 import * as CANNON from 'cannon-es';
 
 /**
@@ -12,8 +12,8 @@ import * as CANNON from 'cannon-es';
  */
 export function usePhysics() {
   // reactive reference to the physics world (need to access across multiple functions/components)
-  const world = ref<CANNON.World | null>(null);
-  const katamariBody = ref<CANNON.Body | null>(null);
+  const world = shallowRef<CANNON.World | null>(null);
+  const katamariBody = shallowRef<CANNON.Body | null>(null);
 
   /**
    * initializes physics world with gravity and materials

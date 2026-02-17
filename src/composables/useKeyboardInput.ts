@@ -37,6 +37,16 @@ export function useKeyboardInput() {
       // keep composable focused on input, not game logic
       window.dispatchEvent(new CustomEvent('respawn-collectibles'));
     }
+    //also, handle arrow keys as wasd
+    else if (key === 'arrowup') {
+      keys.value.w = true;
+    } else if (key === 'arrowdown') {
+      keys.value.s = true;
+    } else if (key === 'arrowleft') {
+      keys.value.a = true;
+    } else if (key === 'arrowright') {
+      keys.value.d = true;
+    }
   }
 
   /**
@@ -47,6 +57,14 @@ export function useKeyboardInput() {
 
     if (key in keys.value) {
       keys.value[key as keyof KeyState] = false;
+    } else if (key === 'arrowup') {
+      keys.value.w = false;
+    } else if (key === 'arrowdown') {
+      keys.value.s = false;
+    } else if (key === 'arrowleft') {
+      keys.value.a = false;
+    } else if (key === 'arrowright') {
+      keys.value.d = false;
     }
   }
 

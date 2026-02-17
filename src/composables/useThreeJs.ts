@@ -1,5 +1,5 @@
 // --- 3d rendering ---
-import { ref, onBeforeUnmount } from 'vue';
+import { shallowRef, onBeforeUnmount } from 'vue';
 import type { Ref } from 'vue';
 import * as THREE from 'three';
 
@@ -12,10 +12,10 @@ import * as THREE from 'three';
  * - can be reused for different views
  */
 export function useThreeJS(canvasContainer: Ref<HTMLElement | null>) {
-  const scene = ref<THREE.Scene | null>(null); // holds all 3d object
-  const camera = ref<THREE.PerspectiveCamera | null>(null);  // our eye into the world
-  const renderer = ref<THREE.WebGLRenderer | null>(null); //draws the scene to the canvas
-  const katamariMesh = ref<THREE.Mesh | null>(null); // visual representation of the player
+  const scene = shallowRef<THREE.Scene | null>(null); // holds all 3d object
+  const camera = shallowRef<THREE.PerspectiveCamera | null>(null);  // our eye into the world
+  const renderer = shallowRef<THREE.WebGLRenderer | null>(null); //draws the scene to the canvas
+  const katamariMesh = shallowRef<THREE.Mesh | null>(null); // visual representation of the player
 
   /**
    * initializes the three.js rendering pipeline
@@ -66,15 +66,15 @@ export function useThreeJS(canvasContainer: Ref<HTMLElement | null>) {
     // --- katamari mesh ---
     const geometry = new THREE.SphereGeometry(1, 32, 32); // radius 1m, 32 segments (for smoothness)
     const material = new THREE.MeshStandardMaterial({
-      color: '#32cd32', // lime green
+      color: 0x32cd32, // lime green
       wireframe: true, // easy to see rotation, debug-friendly
     });
     katamariMesh.value = new THREE.Mesh(geometry, material);
-    katamariMesh.value.position.y = 1; // start at ground level
+    katamariMesh.value.position.set(0, 5, 0); // start at falling point
     scene.value.add(katamariMesh.value);
 
     // --- ground mesh ---
-    const planeGeo = new THREE.PlaneGeometry(500, 500); // 500m square
+    const planeGeo = new THREE.PlaneGeometry(150, 150); // 150m square
     const planeMat = new THREE.MeshStandardMaterial({
       color: '#f0f0f0', // light gray
       side: THREE.DoubleSide, // visible from below (if camera goes under)

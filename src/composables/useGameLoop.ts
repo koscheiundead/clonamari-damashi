@@ -30,7 +30,9 @@ export function useGameLoop(
   keys: Ref<KeyState>,
   collectibles: Ref<Collectible[]>,
   katamariSize: Ref<number>,
-  onCollect: () => void // callback when item is collected
+  onCollect: () => void, // callback when item is collected
+  renderFn: () => void, // threeJS render function
+  updateCameraFn: () => void, // camera follow function
 ) {
   // store animation frame ID so we can cancel it on unmount
   // prevents game loop from running after component is destroyed
@@ -79,6 +81,10 @@ export function useGameLoop(
       katamariMesh.value.position.copy(katamariBody.value.position);
       katamariMesh.value.quaternion.copy(katamariBody.value.quaternion);
     }
+
+    // --- update camera and render ---
+    updateCameraFn();
+    renderFn();
   }
 
   /**

@@ -1,5 +1,5 @@
 // --- item management ---
-import { ref } from 'vue';
+import { shallowRef, ref } from 'vue';
 import type { Ref } from 'vue';
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
@@ -14,14 +14,14 @@ import type { Collectible } from '../gameLogic';
  * - easy to add different collectible types or power-ups
  */
 export function useCollectibles(scene: Ref<THREE.Scene | null>, world: Ref<CANNON.World | null>) {
-  const collectibles = ref<Collectible | []>([]); // array holding all collectibles (collected and not)
+  const collectibles = shallowRef<Collectible | []>([]); // array holding all collectibles (collected and not)
   const collectedCount = ref(0); // how many items have been collected? (for score display)
 
   /**
    * spawns random collectibles across plane
    * - random shapes (visual interest)
    * - random colors (easy to distinguish items)
-   * - random positions (spread across 450mx450m area)
+   * - random positions (spread across 100mx100m area)
    *
    * @param count - how many collectibles to spawn
    */
@@ -50,11 +50,11 @@ export function useCollectibles(scene: Ref<THREE.Scene | null>, world: Ref<CANNO
 
       // random position on the plane
       // (Math.Random() - 0.5) gives a range [-0.5, 0.5]
-      // multiply by 450 for the 450m x 450m area
+      // multiply by 100 for the 100m x 100m area
       mesh.position.set(
-        (Math.random() - 0.5) * 450, // x
+        (Math.random() - 0.5) * 100, // x
         0.5, // y (slightly above ground to prevent clipping)
-        (Math.random() - 0.5) * 450, // z
+        (Math.random() - 0.5) * 100, // z
       );
 
       // --- physics body for collectible ---

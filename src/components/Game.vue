@@ -41,7 +41,9 @@ const gameLoop = useGameLoop(
   // callback when item is collected to keep composables decoupled
   () => {
     collectiblesManager.incrementCollectedCount();
-  }
+  },
+  threeJS.render,
+  threeJS.updateCamera,
 );
 
 // --- event handlers ---
