@@ -34,7 +34,7 @@ const input = useKeyboardInput();
 const gameLoop = useGameLoop(
   physics.world,
   physics.katamariBody,
-  physics.katamariMesh,
+  threeJS.katamariMesh,
   input.keys,
   collectiblesManager.collectibles,
   katamariSize,
